@@ -78,6 +78,10 @@ void ATPSPlayer::BeginPlay()
 
 	// 1. 스나이퍼 UI 위젯 인스턴스 생성
 	_sniperUI = CreateWidget(GetWorld(), sniperUIFactory);
+	// 2. 일반 조준 UI 크로스헤어 인스턴스 생성
+	_crosshairUI = CreateWidget(GetWorld(), crosshairUIFactory);
+	// 3. 일반 조준 UI 등록
+	_crosshairUI->AddToViewport();
 }
 
 // Called every frame
@@ -221,11 +225,13 @@ void ATPSPlayer::SniperAim()
 		bSniperAim = true;
 		_sniperUI->AddToViewport();
 		tpsCamComp->SetFieldOfView(45.0f);
+		_crosshairUI->RemoveFromParent();
 	}
 	else
 	{
 		bSniperAim = false;
 		_sniperUI->RemoveFromParent();
 		tpsCamComp->SetFieldOfView(90.0f);
+		_crosshairUI->AddToViewport();
 	}
 }
