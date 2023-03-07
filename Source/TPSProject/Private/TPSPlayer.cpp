@@ -92,7 +92,6 @@ void ATPSPlayer::Tick(float DeltaTime)
 
 	Move();
 
-	// eenoianlsdfl
 }
 
 // Called to bind functionality to input
