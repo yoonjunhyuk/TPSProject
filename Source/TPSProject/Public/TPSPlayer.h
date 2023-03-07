@@ -37,7 +37,10 @@ public:
 	void LookUp(float value);
 
 	UPROPERTY(EditAnywhere, Category = PlayerSetting)
-	float walkSpeed = 600;
+	float walkSpeed = 200;
+	
+	UPROPERTY(EditAnywhere, Category = PlayerSetting)
+	float runSpeed = 600;
 
 	FVector direction;
 
@@ -76,4 +79,6 @@ public:
 	TSubclassOf<class UUserWidget> crosshairUIFactory;
 
 	class UUserWidget* _crosshairUI;
+
+	void InputRun();
 };
