@@ -72,6 +72,12 @@ ATPSPlayer::ATPSPlayer()
 		// 5-6. 크기 조정하기
 		sniperGunComp->SetRelativeScale3D(FVector(0.15f));
 	}
+
+	ConstructorHelpers::FObjectFinder<USoundBase> tempSound(TEXT("SoundWave'/Game/SniperGun/Rifle.Rifle'"));
+	if (tempSound.Succeeded())
+	{
+		bulletSound = tempSound.Object;
+	}
 }
 
 // Called when the game starts or when spawned
@@ -178,6 +184,8 @@ void ATPSPlayer::InputRun()
 
 void ATPSPlayer::InputFire()
 {
+	UGameplayStatics::PlaySound2D(GetWorld(), bulletSound);
+
 	// 카메라 셰이크 재생
 	auto controller = GetWorld()->GetFirstPlayerController();
 	controller->PlayerCameraManager->StartCameraShake(cameraShake);
